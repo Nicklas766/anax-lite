@@ -1,0 +1,134 @@
+body {
+    background-color:black;
+}
+
+/* All wrapper */
+.wrap-all {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 100%;
+    margin-left:auto;
+    margin-right:auto;
+    background-color: rgb(26,26,89);
+}
+
+/* Head Wrapper */
+.site-header {
+
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(9,9,59);
+
+    text-align:center;
+
+    border: solid;
+    height: 200px;
+
+}
+
+/* Footer Wrapper */
+.site-footer {
+
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(9,9,59);
+
+    text-align:center;
+
+    border: solid;
+    height: 200px;
+
+}
+
+/* Main wrapper */
+.main {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border: solid 1px;
+    text-align:center;
+    width: 700px;
+    min-height: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(26,26,89);
+}
+
+/* Byline */
+.site-byline {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #09093b;
+    border: medium solid;
+    height: 230px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 700px;
+}
+
+.site-byline h1 {
+    color: #aa8e39;
+    float: right;
+    font-family: Candal,sans-serif;
+    margin-bottom: 24px;
+    margin-right: 120px;
+    margin-top: 24px;
+}
+
+.site-byline p {
+    color: rgb(255,234,170);
+    float: right;
+    margin-right: 30px;
+    font-family: 'Raleway', sans-serif;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.site-byline a {
+    clear: right;
+    float: right;
+    font-family: Raleway,sans-serif;
+    margin-right: 120px;
+
+}
+
+.figure {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 24px;
+    display: block;
+    float:left;
+    position:absolute;
+}
+
+
+/* Font style */
+.site-header h1 {
+    font-size: 50px;
+}
+.site-footer h1 {
+    font-size: 50px;
+}
+p {
+    color: rgb(255,234,170);
+    font-family: 'Raleway', sans-serif;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+h1, h2 {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    font-size: 2em;
+    font-family: 'Candal', sans-serif;
+
+    color: rgb(170,142,57);
+}
+h3 {
+    font-size: 1.25em;
+    font-family: 'Candal', sans-serif;
+    color: rgb(170,142,57);
+}
+
+div {
+    width: 380px;
+}
