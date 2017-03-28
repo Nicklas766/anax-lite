@@ -2,6 +2,7 @@
 <meta charset="utf-8">
 <head>
  <link rel="stylesheet" type="text/css" href="style/simpleStyle.css">
+  <link rel="stylesheet" type="text/css" href="style/navbar.css">
  <link href="https://fonts.googleapis.com/css?family=Candal|Sigmar+One" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Candal" rel="stylesheet">
 
@@ -12,4 +13,4 @@
 <div class="wrap-all">
 
     <div class ="site-header">
-<center> <h1> OOPHP </h1> </center>
+<h1> Anax-Lite</h1>

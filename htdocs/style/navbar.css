@@ -1,0 +1,34 @@
+/* Navbar */
+
+
+.navbar a:hover {
+    box-shadow: white 0 0 10px;
+    background-color: white;
+}
+
+.navbar a {
+    background: rgb(26, 26, 89) none repeat scroll 0 0;
+    border: 2px solid rgb(170, 142, 57);
+    border-radius: 4px;
+    color: rgb(170, 142, 57);
+    display: inline-block;
+    padding: 10px;
+    text-decoration: none;
+    width: 150px;
+    -webkit-transition: all 1s ease;
+   -moz-transition: all 1s ease;
+   -o-transition: all 1s ease;
+   font-size: 25px;
+}
+
+.navbar li{
+    /*background-color: rgba(0, 0, 0, 0.2);*/
+
+  color: #fff;
+  display: inline-block;
+  display:inline;
+}
+
+.navbar a.current {
+    background: green;
+}
