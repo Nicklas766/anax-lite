@@ -16,10 +16,16 @@ $app->response = new \Anax\Response\Response();
 $app->url      = new \Anax\Url\Url();
 $app->router   = new \Anax\Route\RouterInjectable();
 $app->view     = new \Anax\View\ViewContainer();
+$app->session  = new \nicklas\Session\Session();
+$app->navbar = new \nicklas\Navbar\Navbar();
+
 // Inject $app into the view container for use in view files.
 $app->view->setApp($app);
+$app->navbar->setApp($app);
 // Update view configuration with values from config file.
 $app->view->configure("view.php");
+$app->navbar->configure("navbar.php");
+
 // Init the object of the request class.
 $app->request->init();
 // Init the url-object with default values from the request object.
@@ -31,6 +37,7 @@ $app->url->setScriptName($app->request->getScriptName());
 // Update url configuration with values from config file.
 $app->url->configure("url.php");
 $app->url->setDefaultsFromConfiguration();
+
 // Load the routes
 require ANAX_INSTALL_PATH . "/config/route.php";
 // Leave to router to match incoming request to routes

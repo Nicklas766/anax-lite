@@ -1,6 +1,5 @@
 /* Navbar */
 
-
 .navbar a:hover {
     box-shadow: white 0 0 10px;
     background-color: white;
@@ -31,4 +30,26 @@
 
 .navbar a.current {
     background: green;
+}
+
+.session-navbar a:hover {
+    box-shadow: green 0 0 10px;
+    background-color: green;
+}
+/* Session navbar */
+.session-navbar a{
+    border: 4px solid grey;
+    display: inline-block;
+    font-size: 20px;
+    padding: 15px;
+    text-decoration: none;
+    width: 90px;
+    border-radius:20%;
+}
+.session-navbar li{
+    /*background-color: rgba(0, 0, 0, 0.2);*/
+
+  color: #fff;
+  display: inline-block;
+  display:inline;
 }
