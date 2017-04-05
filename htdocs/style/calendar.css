@@ -1,0 +1,77 @@
+.calendar-container {
+
+    width:1000px;
+    height:100%;
+    box-shadow: 3px 3px 5px 6px black;
+    border:solid 2px black;
+    background:black;
+    margin-left:auto;
+    margin-right:auto;
+    animation: wobble 1.5s;
+
+}
+
+.calendar {
+    width:714px;
+    vertical-align: top;
+    display: inline-block;
+    height:100%;
+    background:black;
+}
+
+.calendar-day-name {
+    width:100px; color: white; display: inline-block; height:100px; background:red; border: solid 1px black;
+}
+
+.calendar-day {
+    width:100px;
+    color:black;
+    display: inline-block;
+    height:100px;
+    background:white;
+    border: solid 1px black;
+    animation: scale 5s;
+
+}
+.calendar-empty {
+    width:100px; display: inline-block; height:100px; background:grey; border: solid 1px black;
+}
+.triangle {
+    background: transparent;
+    border-top: 120px solid transparent;
+    border-bottom: 120px solid transparent;
+    width: 150px; height: 220px;
+
+    float:left;
+    margin-left: 100px;
+    margin-top: -500px;
+    border-left: transparent;
+    border-right: 120px solid green;
+}
+
+.triangle2 {
+    background: transparent;
+    border-top: 120px solid transparent;
+    border-bottom: 120px solid transparent;
+    width: 150px; height: 220px;
+
+    float:right;
+    margin-right: 100px;
+    margin-top: -500px;
+    border-right: transparent;
+    border-left: 120px solid green;
+}
+@keyframes wobble{
+    0%  { transform:  rotate(180deg); }
+    20%  { transform:  rotate(1deg); }
+    50%  { transform:  rotate(-5deg); }
+    100%  { transform:  rotate(0deg); }
+}
+
+
+@keyframes scale  {
+  0%  { transform:  rotate(25deg); }
+  30%  { transform:  rotate(-10deg); }
+  70%  { transform:  scale(1.5); }
+  100%  { transform:  rotate(0deg); }
+}

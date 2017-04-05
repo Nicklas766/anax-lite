@@ -1,4 +1,7 @@
-<p> destroy </p>
+<div class="main">
+
+<article>
+    <p> destroy </p>
 
 <?php
 

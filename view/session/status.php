@@ -1,1 +1,4 @@
-<p> status </p>
+<div class="main">
+
+<article>
+    <p> status </p>

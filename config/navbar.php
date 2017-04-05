@@ -23,6 +23,10 @@ return [
             "text" => "Session",
             "route" => "session",
         ],
+        "calendar" => [
+            "text" => "Calendar",
+            "route" => "calendar",
+        ],
     ]
     ],
 [

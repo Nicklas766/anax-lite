@@ -1,4 +1,7 @@
-<p> Decrement </p>
+<div class="main">
+
+<article>
+    <p> Decrement </p>
 
 <?php
 

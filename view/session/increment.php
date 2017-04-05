@@ -1,4 +1,7 @@
-<p> increment </p>
+<div class="main">
+
+<article>
+    <p> increment </p>
 
 <?php
 

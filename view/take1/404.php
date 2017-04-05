@@ -1,3 +1,7 @@
+<div class="main">
+
+<article>
+
 <?php
 $currentRoute = $app->request->getRoute();
 $routes = "<ul>";

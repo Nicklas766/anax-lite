@@ -40,6 +40,17 @@ $app->router->add("session", function () use ($app) {
                   ->send();
 });
 
+$app->router->add("calendar", function () use ($app) {
+    $app->view->add("take1/header", ["title" => "Session"]);
+    $app->view->add("navbar2/navbar");
+    $app->view->add("calendar", [
+     "redirect" => $app->url->create("calendar")
+    ]);
+    $app->view->add("take1/footer");
+    $app->response->setBody([$app->view, "render"])
+                  ->send();
+});
+
 $app->router->add("status", function () use ($app) {
     $data = [
         "Server" => php_uname(),

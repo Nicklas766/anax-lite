@@ -18,6 +18,7 @@ $app->router   = new \Anax\Route\RouterInjectable();
 $app->view     = new \Anax\View\ViewContainer();
 $app->session  = new \nicklas\Session\Session();
 $app->navbar = new \nicklas\Navbar\Navbar();
+$app->calendar = new \nicklas\Calendar\Calendar();
 
 // Inject $app into the view container for use in view files.
 $app->view->setApp($app);

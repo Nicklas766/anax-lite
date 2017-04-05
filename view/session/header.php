@@ -8,7 +8,7 @@
 
 </head>
 <title><?= $title ?></title>
-<body>
+
     <!-- wrapper around all items on page -->
 <div class="wrap-all">
 

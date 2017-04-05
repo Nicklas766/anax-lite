@@ -1,4 +1,7 @@
-<?php
+<div class="main">
+
+<article>
+    <?php
 ?><h1>About</h1>
 <p>Detta är en hemsida för kursen OOPHP, som kommer handla om objektorienterad PHP. </p>
 

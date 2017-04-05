@@ -1,4 +1,8 @@
-<h1>Session</h1>
+
+<div class="main">
+
+<article>
+    <h1>Session</h1>
 <p>Sessions-uppgiften för OOPHP kmom02.</p>
 <?php
 

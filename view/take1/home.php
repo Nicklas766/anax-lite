@@ -1,4 +1,7 @@
-<?php
+<div class="main">
+
+<article>
+    <?php
 ?><h1>Hem</h1>
 <p>Hej! Välkommen till min me-sida, Jag heter Nicklas Envall och har bott i Stockholm hela mitt liv. </p>
 
