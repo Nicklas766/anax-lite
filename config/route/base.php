@@ -29,7 +29,9 @@ $app->router->add("report", function () use ($app) {
     $app->response->setBody([$app->view, "render"])
                   ->send();
 });
-
+// -------------------------------------------------------
+// KOM02 SESSION, CALENDAR
+// -------------------------------------------------------
 $app->router->add("session", function () use ($app) {
     $app->view->add("take1/header", ["title" => "Session"]);
     $app->view->add("navbar2/navbar");
@@ -41,7 +43,7 @@ $app->router->add("session", function () use ($app) {
 });
 
 $app->router->add("calendar", function () use ($app) {
-    $app->view->add("take1/header", ["title" => "Session"]);
+    $app->view->add("take1/header", ["title" => "Calendar"]);
     $app->view->add("navbar2/navbar");
     $app->view->add("calendar", [
      "redirect" => $app->url->create("calendar")
@@ -50,6 +52,8 @@ $app->router->add("calendar", function () use ($app) {
     $app->response->setBody([$app->view, "render"])
                   ->send();
 });
+
+
 
 $app->router->add("status", function () use ($app) {
     $data = [

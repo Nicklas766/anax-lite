@@ -20,9 +20,15 @@ $app->session  = new \nicklas\Session\Session();
 $app->navbar = new \nicklas\Navbar\Navbar();
 $app->calendar = new \nicklas\Calendar\Calendar();
 
-// Inject $app into the view container for use in view files.
+// Get admin and connect class
+$app->connect = new \nicklas\Connect\Connect();
+$app->admin = new \nicklas\Connect\Admin();
+
+
+// Inject $app into the view and navbar/admin classes/files.
 $app->view->setApp($app);
 $app->navbar->setApp($app);
+$app->admin->setApp($app);
 // Update view configuration with values from config file.
 $app->view->configure("view.php");
 $app->navbar->configure("navbar.php");

@@ -146,9 +146,67 @@
 <section>
 <h2>Kmom03</h2>
 
+<h3>Hur kändes det att jobba med PHP PDO, SQL och MySQL?<h3>
+
 <p>
-    ...
+    Kort sagt så kändes det bra, det kändes bra för att de fungerade riktigt bra tillsammans. PHP är grunden kan man nog säga, den är hjärnan bakom allt. Därefter har vi en MySQL databas som vi kopplar oss upp mot med PDO. MySQL databasen sätter jag upp
+    med hjälp av SQL-kod för att få tabellen "users" att se ut som jag vill. Kopplingen mellan MySQL databasen har jag sparad i min "connect-klass", där kan jag skicka in SQL-kod och "fetcha" det jag behöver. PHP-koden leder vägen från start till slutet,
+    den kontrollerar så "submits:en" är korrekta och att de kommer rätt.
 </p>
+
+<p>
+    Jag känner att jag fick ett bra flöde på det hela och förstod tillslut hur det hör ihop. Så det känns bra.
+</p>
+
+<h3>Reflektera kring koden du skrev för att lösa uppgifterna, klasser, formulär, integration Anax Lite?<h3>
+
+<p>
+    Första uppgiften handlade om inloggning. Jag började med att skapa min MySQL databas genom att koppla upp mig mot BTH med SSH. Därefter så integrerade jag "connect-klassen", i Anax-Lite, som vi fått i andra övningen. Med hjälp av klassen så kunde jag koppla
+    upp mig mot databasen. Därefter behövde jag PHP-kod och "forms" för "GET" och "POST", så jag skapade de vyer som behövdes. Helt ärligt, så är vyerna väldigt lika om inte identiska till övningen. Jag har försökt strukturera vyerna på bra ställen och göra det
+    anpassad till min egna miljö dock. Jag har lagt till nya vyer för "edit" och nya funktioner i "connect-klassen" för att kunna hämta information från databasen. Profil vyn så hämtar jag information från databasen och redovisar för användaren, jag sätter även
+    en liten cookie där.
+</p>
+
+<p>
+    Andra uppgiften handlade om ett Admin gränssnitt. Jag gillade uppgiften då den kändes logiskt, då man i t.ex ett företag kanske har ett system för sina anställda, så vill man att en "icke-webprogrammerare" ska kunna hantera det. Hursomhelst så började jag med
+    att skapa en ny klass, "Admin". Men att koppla upp mig mot databasen två gånger kändes onödigt, så "Admin" är en subklass av "Connect", jag har därav tillgång till databasen. Jag "echo:ar" ut HTML-kod från tre funktioner som behöver "current route", så
+    jag injectade $app rakt in i "Admin-klassen", underbart, nu har min Admin-klass tillgång till $app och även till databasen.
+</p>
+
+<p>
+    Angående just Admin-klassen, så satt jag och funderade, hur ska jag göra klassen kort men kraftfull? Att göra massor av HTML echo funktioner, var inte ett alternativ. Istället gjorde jag så att jag har massor av små funktioner, som hämtar informationen från
+    databasen. Därefter sparar jag den i variabeln "$res" och skickar in den i en HTML echo funktion. T.ex så använder searchUser(), setAllTables() samma funktion, riktigt smidigt! Kunde säkert tryckt ner koden ännu mer och gjort det bättre, det kan man ju oftast göra.
+</p>
+
+<p>
+    Som man märker så är min Admin-klass, smidig, då jag kan hålla min vyer "dumma", så jag hämtar mesta delen av koden från Admin-klassen. Användarna har behörighet, som är "ingenting", "user" och "admin". När man loggar in på en profil, så syns endast "edit profile" om
+    man är en vanlig användare. Men om man har behörigheten "admin" så kommer man även se en länk till "Admin Tools" på sin profil-sida. Admin tools försökte jag göra smidig att använda med CSS-stil och bra placerade divar. Lösenordet är inte dolt när admin skriver, som var
+    ett krav i förra uppgiften, för att det kändes logiskt (och var inte ett krav för uppgift 2). När man söker på en användare så är den strikt, man måste skriva användarnamnet korrekt, det går med wildcard dock.
+</p>
+
+<p>
+    Om man tänker tillbaka på uppgifterna, vad hade jag kunnat gjort bättre? Vad kan jag göra bättre? Det första jag hade gjort är att skapa en "user-klass" som är inriktad på profilsidan och hanteringen av "den vanliga inloggningen", det hade sparat mycket kod i vyerna.
+    Jag hade även velat skapa en config-fil med funktioner som kan användas både i klasserna som vyerna.
+</p>
+
+<h3>Känner du dig hemma i ramverket, dess komponenter och struktur?<h3>
+
+<p>
+    Efter kursmoment två så känns det som att jag har bättre koll. Jag vet hur jag ska få en klass att fungera i en vy, jag vet hur jag ska få tillgång till $app på vissa ställen. Jag försöker göra det till mitt egna som man blir uppmanad att göra. T.ex strukturen av
+    hur man löste uppgifterna, eller vyerna. Men det känns som det finns några riktigt gömda juveler att hämta från ramverket fortfarande (att jag alltså inte är medveten om vissa saker som går att göra).
+</p>
+
+<h3>Hur bedömmer du svårighetsgraden på kursens inledande kursmoment, känner du att du lär dig något/bra saker?<h3>
+
+<p>
+    Om man börjar med svårighetsgraden, så tycker jag att det inte har varit alltför svårt. Det har defintivt varit utmanande och man har behövt tänka mer och reflektera. Första kursmomentet var verkligen inte en mjuk start som t.ex att endast göra en me-sida. Det
+    var verkligen rakt på sak direkt. Men det var faktiskt skönt, att få hoppa rakt in i PHP igen, det var tufft däremot då jag inte hade kodat PHP på ett tag. Men rakt på sak i första momentet var nog bra, så man kommer igång, jag går ju kursen för att jag vill lära mig.
+</p>
+<p>
+    Kort genomgång om vad jag lärt mig på dessa kursmomenten. Jag vet grunden hur en PHP-klass kan se ut, hur den kan användas. Jag vet hur jag kopplar upp mig mot en databas och hur jag pratar med den med SQL. Sen givetvis mycket andra saker, men det var nog det viktigaste.
+    Det har varit mycket att göra och det tog mycket energi, men jag har ju lärt mig riktigt mycket, så det är värt det enligt mig. Men 6 kursmoment av denna takten kan nog bli för mycket, men för min del, så är det dags att börja med kmom04 nu.
+</p>
+
 </section>
 
 <section>

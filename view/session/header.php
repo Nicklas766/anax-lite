@@ -3,6 +3,7 @@
 <head>
  <link rel="stylesheet" type="text/css" href="../style/simpleStyle.css">
   <link rel="stylesheet" type="text/css" href="../style/navbar.css">
+    <link rel="stylesheet" type="text/css" href="../style/login.css">
  <link href="https://fonts.googleapis.com/css?family=Candal|Sigmar+One" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Candal" rel="stylesheet">
 

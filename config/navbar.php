@@ -27,6 +27,10 @@ return [
             "text" => "Calendar",
             "route" => "calendar",
         ],
+        "login" => [
+            "text" => "Login",
+            "route" => "login",
+        ],
     ]
     ],
 [
@@ -55,5 +59,24 @@ return [
             "route" => "session/destroy",
         ],
     ]
-]
+],
+      [
+      "config" => [
+        "navbar-class" => "admin-navbar"
+      ],
+      "items" => [
+        "users" => [
+            "text" => "Users",
+            "route" => "admin/users",
+        ],
+        "search" => [
+            "text" => "Search",
+            "route" => "admin/search",
+        ],
+        "add" => [
+            "text" => "Add",
+            "route" => "admin/add",
+        ],
+      ]
+      ]
 ];
