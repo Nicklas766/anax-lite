@@ -25,7 +25,7 @@ class Connect
             "options"  => [PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'UTF8'"],
         ];
 
-        // Local development
+        // // Local development
         // $databaseConfig = [
         //     "dsn"      => "mysql:host=localhost;dbname=userprofiles;",
         //     "login"    => "user",
@@ -54,7 +54,22 @@ class Connect
         $stmt = $this->db->prepare("INSERT into users (name, pass, authority) VALUES ('$user', '$pass', '$authority')");
         $stmt->execute();
     }
-
+    // get res with fetchAll
+    public function getAllRes($sql)
+    {
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $res;
+    }
+    // get res with one fetch
+    public function getRes($sql)
+    {
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $res;
+    }
     /**
      * Gets the hashed password from the database
      * @param $user string The user to get password from/for

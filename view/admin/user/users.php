@@ -1,20 +1,6 @@
 <?php
 $admin = $app->admin;
 echo "<div class='general-container'>";
-
-function mergeQueryString($options, $prepend = "?")
-{
-    // Parse querystring into array
-    $query = [];
-    parse_str($_SERVER["QUERY_STRING"], $query);
-
-    // Merge query string with new options
-    $query = array_merge($query, $options);
-
-    // Build and return the modified querystring as url
-    return $prepend . http_build_query($query);
-}
-
 ?>
 <h3> Users </h3>
 <p>Items per page:
@@ -28,12 +14,6 @@ $hits; // How many rows to display per page.
 $page; // Current page, use to calculate offset value
 $max;  // Max pages available: SELECT COUNT(id) AS rows FROM movie
 
-function getGet($key, $default = null)
-{
-    return isset($_GET[$key])
-        ? $_GET[$key]
-        : $default;
-}
 
 // Get number of hits per page
 $hits = getGet("hits", 4);
@@ -68,7 +48,7 @@ if (!(in_array($orderBy, $columns) && in_array($order, $orders))) {
 }
 
 $admin->setAllTables($hits, $offset, $orderBy, $order);
-$link1 = $admin->mergeQueryString(["hits" => 2]);
+$link1 = mergeQueryString(["hits" => 2]);
 ?>
 
 <?php for ($i = 1; $i <= $max; $i++) : ?>

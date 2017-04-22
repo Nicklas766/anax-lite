@@ -36,7 +36,7 @@ if (isset($_POST['submitCreateForm'])) {
 }
 ?>
     <form action="" method="POST">
-
+        <fieldset>
             <legend><h3>Create user</h3></legend>
                 <label for="new_name">Username</label>
                 <input placeholder="Username" type="text" name="new_name">
@@ -56,7 +56,7 @@ if (isset($_POST['submitCreateForm'])) {
                 </select>
 
                 <input type="submit" name="submitCreateForm" value="Create">
-
+</fieldset>
     </form>
 
 </div></div></div>

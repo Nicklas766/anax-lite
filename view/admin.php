@@ -20,6 +20,10 @@ echo "<div class='admin-container'>";
 echo "<div class='admin-header'>";
 echo "<h1>Admin Tools</h1>";
 
+
+echo "</div>";
+
 // Get admin navbar
+echo "<div class='admin-sidebar'>";
 echo $app->navbar->getHTML(2);
 echo "</div>";

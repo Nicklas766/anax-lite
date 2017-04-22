@@ -27,6 +27,18 @@ return [
             "text" => "Calendar",
             "route" => "calendar",
         ],
+        "textfilter" => [
+            "text" => "Textfilter",
+            "route" => "textfilter",
+        ],
+        "Pages" => [
+            "text" => "Pages",
+            "route" => "pages",
+        ],
+        "Blog" => [
+            "text" => "Blog",
+            "route" => "blog",
+        ],
         "login" => [
             "text" => "Login",
             "route" => "login",
@@ -77,6 +89,16 @@ return [
             "text" => "Add",
             "route" => "admin/add",
         ],
+
+        "create" => [
+            "text" => "Create",
+            "route" => "admin/create",
+        ],
+        "overview" => [
+            "text" => "Overview",
+            "route" => "admin/overview",
+        ],
+
       ]
       ]
 ];

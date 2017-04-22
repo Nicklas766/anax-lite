@@ -89,8 +89,8 @@ class Admin extends Connect implements \Anax\Common\AppInjectableInterface, \Ana
         if (strpos($this->app->request->getRoute(), 'search') !== false) {
             return;
         }
-        $asc = $this->mergeQueryString(["orderby" => $column, "order" => "asc"]);
-        $desc = $this->mergeQueryString(["orderby" => $column, "order" => "desc"]);
+        $asc = mergeQueryString(["orderby" => $column, "order" => "asc"]);
+        $desc = mergeQueryString(["orderby" => $column, "order" => "desc"]);
 
         return <<<EOD
 <span class="orderby">
@@ -99,19 +99,6 @@ class Admin extends Connect implements \Anax\Common\AppInjectableInterface, \Ana
 </span>
 
 EOD;
-    }
-
-    public function mergeQueryString($options, $prepend = "?")
-    {
-        // Parse querystring into array
-        $query = [];
-        parse_str($_SERVER["QUERY_STRING"], $query);
-
-        // Merge query string with new options
-        $query = array_merge($query, $options);
-
-        // Build and return the modified querystring as url
-        return $prepend . http_build_query($query);
     }
 
     public function setTable($res)

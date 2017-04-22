@@ -8,21 +8,22 @@ body {
     width: 100%;
     margin-left:auto;
     margin-right:auto;
-    background: #072B83;
+    background: white;
     margin-top: 100px;
 }
 
 /* Head Wrapper */
 .site-header {
 
-    background-color: #09093b;
+    background-color: #0E0E0E;
     margin-bottom: 100px;
     position: fixed;
     text-align: center;
     top: 0;
     width: 100%;
     z-index: 3;
-    height: 105px;
+    height: 100px;
+    border-bottom: solid 1px white;
 }
 
 /* Footer Wrapper */
@@ -35,6 +36,15 @@ body {
 
 }
 
+section {
+    border: 2px solid #ccc;
+  box-sizing: border-box;
+  flex: 0 0 100%;
+  margin: 0 1% 10px;
+  padding: 10px;
+  text-align: center;
+  height:100%;
+}
 /* Main wrapper */
 .main {
     background-color: #1a1a59;
@@ -47,6 +57,7 @@ body {
         opacity: 0.9;
         text-align: center;
         width:100%;
+        color: white;
 }
 /* Byline */
 .site-byline {
@@ -57,7 +68,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    width: 700px;
+    max-width:1050px;
     margin-bottom: 60px;
 }
 
@@ -98,10 +109,12 @@ body {
 
 
 /* Font style */
+
 .site-header h1 {
+    float: left;
     font-size: 35px;
     margin-bottom: 0;
-    margin-top:0;
+    margin-top: 25px;
 }
 .site-footer h1 {
     font-size: 50px;
@@ -130,3 +143,48 @@ h3 {
 a {
     color: orange;
 }
+
+
+
+
+/*Thrown in for textfilter*/
+.text {
+    border: 1px solid #eee;
+    font-size: 16px;
+    min-height: 5em;
+    width: 30em;
+}
+
+.container {
+
+        background: #fff none repeat scroll 0 0;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        flex: 0 0 90%;
+        margin: 0 1% 10px;
+        padding: 10px;
+        height: 100%;
+        min-height:500px;
+        color:black;
+
+    }
+
+    .flex-container {
+        display: flex;
+        flex-flow: row wrap;
+        width: 100%;
+    }
+
+
+    .flex-container h3 {
+        color:black;
+    }
+    .flex-container p {
+        color:black;
+    }
+    /* Media queries for .widget */
+    @media (min-width: 500px) {
+        .container {
+            flex: 0 0 48.0%;
+        }
+    }

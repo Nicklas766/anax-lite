@@ -20,15 +20,25 @@ $app->session  = new \nicklas\Session\Session();
 $app->navbar = new \nicklas\Navbar\Navbar();
 $app->calendar = new \nicklas\Calendar\Calendar();
 
-// Get admin and connect class
+// Get admin, connect and content class
 $app->connect = new \nicklas\Connect\Connect();
 $app->admin = new \nicklas\Connect\Admin();
+$app->content = new \nicklas\Connect\Content();
+$app->page = new \nicklas\Connect\Page();
+$app->blog = new \nicklas\Connect\Blog();
+$app->block = new \nicklas\Connect\Block();
+
+// Textfilterclass
+$app->textfilter = new \nicklas\Textfilter\Textfilter();
 
 
 // Inject $app into the view and navbar/admin classes/files.
 $app->view->setApp($app);
 $app->navbar->setApp($app);
 $app->admin->setApp($app);
+$app->content->setApp($app);
+$app->page->setApp($app);
+$app->blog->setApp($app);
 // Update view configuration with values from config file.
 $app->view->configure("view.php");
 $app->navbar->configure("navbar.php");

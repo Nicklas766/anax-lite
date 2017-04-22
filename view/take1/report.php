@@ -2,7 +2,8 @@
 
 <article>
     <?php
-?><h1>Report</h1>
+?>
+<h1>Report</h1>
 <p>Redovisningstexter</p>
 
 <section>
@@ -212,8 +213,80 @@
 <section>
 <h2>Kmom04</h2>
 
+<h2> Finns något att säga kring din klass för texfilter, eller rent allmänt om formattering och filtrering av text som sparas i databasen av användaren? </h2>
 <p>
-    ...
+    För textfilter klassen så har jag valt att återanvända det som behövdes för att lösa kraven. Jag återanvände kod från "mos/ctextfilter" och tog från artiklarna. Jag valde även att lägga in ett default filter på klassen.
+    Så om man inte anger ett filter vid skapningen, så kommer markdown användas som default, istället för att sidan inte visas. Däremot så filtreras inte texten förrän den ska visas på sidan, i databasen så sparas den utan
+    filtrering.
+</p>
+
+<p>
+    Mer än det så finns det nog inte så mycket mer att tillägga. Utöver textfilter, så valde jag att lägga in "esc()" funktionen i min functions.php, så jag har tillgång till den överallt.
+</p>
+
+
+<h2> Berätta hur du tänkte när du strukturerade klasserna och databasen för webbsidor och bloggposter? </h2>
+<p>
+    Jag har valt att skapa klasser för varje "post/page/block" och hanteringen av "content". Om vi börjar med admin-delen, så har jag lagt till "create", "overview" och "edit" som vyer.
+    Där använder jag klassen "Content". Content klassen är en subklass av "Connect", den har funktioner för att se om en slug existerar eller en path. Den innehåller massor av olika funktioner för
+    att kunna utföra "SQL statements", som skapar eller hämtar information. Den tar även fram HTML-kod för tabellen och submit-formen. Sedan har jag vyer som är "spelplanen" jag använder klassens funktioner
+    och har if-satser för "GET" och "POST" (som använder funktioner i functions.php för att fungera).
+</p>
+
+<p>
+    Därefter så har vi "page". Den har även en egen klass, som fungerar som Content-klassen, fast specifikt för "page". Pages.php är vyn för att man ska kunna se en tabell med information om sidorna, är de
+    publicerade eller inte? Där finns en länk som leder användaren till page.php, där hämtas informationen med "SQL statements" från Page-klassen. Därefter ska man kunna se sidan.
+</p>
+
+<p>
+    Angående "block" så valde jag att visa den på förstasidan. Block:sen visas som widgets längst ner, idén är en klassisk "titta här, läs mer". I "blocks.php" redovisas informationen, som använder klassen "Block".
+    Den har även en länk för att man ska kunna se självaste texten. Det kändes onödigt att skapa en ny sida, så jag återanvände "page.php" för blocks också. Det gjorde jag med att lägga till
+    "OR path = "$path" AND type = "block" AND (deleted IS NULL OR deleted > NOW()) AND published <= NOW();" i Page-klassen.
+</p>
+
+<p>
+    Nu till bloggen. Bloggen känner jag att jag löste bäst av de tre typerna. För att få slug att fungera, så behövde jag börja med att fixa routern. Jag la till blog/**, detta gjorde så att slugs kunde användas.
+    I vyn blog.php, så tittar den först "är det en slug?", om det är det, visa blogposten. Om det inte är en slug, visa alla blogginlägg. Min vy blir stilren och Blog-klassen sköter resten.
+</p>
+
+<h2> Förklara vilka routes som används för att demonstrera funktionaliteten för webbsidor och blogg (så att en utomstående kan testa). </h2>
+<p>
+    Det första man behöver/bör göra är att logga in som admin. Det kan man göra genom att trycka på "login" därefter skriver man, "admin" och "admin", sedan går man in på "admin-tools".
+    Det finns två nya "create" och "overview", man trycker på "create" och skriver sedan en titel. Därefter kan man redigera den som man vill. För att se en tabell över allt innehåll så
+    trycker man på "overview".
+</p>
+
+<p>
+    För att se sidorna så går man in på "pages" som finns på menyn i headern. Där finns tabellen med information om man kan gå in på dem eller inte. Man trycker på titeln, därefter är man på sidan.
+</p>
+
+<p>
+    Sedan för att se blogginlägg så trycker man på "blog", den finns också i menyn. Där ser man om den är raderad eller publicerad, om inget datum är angett för "published" så är den inte publicerad än.
+    Sedan trycker man på den understrukna titeln för att se blogginlägget.
+</p>
+
+<p>
+    Typen "block" som man skapar i admin-tools kommer att visas på förstasidan (längst ner). Man behöver ange en path om man vill kunna få översikten från texten då den använder en del av page-funktionen.
+</p>
+<h2> Hur känns det att dokumentera databasen så här i efterhand? </h2>
+<p>
+    Om med dokumentera menas med att vi gör en ER-modell, så känns det bra. För att i slutändan så kommer databasen bli stor, då kan det vara bra att ha något man kan kika på. Tänker på klassdiagrammet som vi
+    använde i oopython-kursen. Det blev mycket lättare att skapa nya klasser då man kunde se hur allt hängde ihop.
+</p>
+
+<p>
+    Om det menas med att vi skriver texter som lagras i databasen, så tycker jag det är strålande. För att man vill ju att en "icke-webbprogrammerare" ska kunna använda hemsidan, då är ju min admin-tools perfekt
+    och ger frihet till denna personen.
+</p>
+
+<h2> Om du är självkritisk till koden du skriver i Anax Lite, ser du förbättringspotential och möjligheter till alternativ struktur av din kod? </h2>
+<p>
+    Jag ser många, många möjligheter. Det första jag vill/ska fixa är routern, just nu är min router som en soptipp om jag skulle dra en rolig metafor. Jag har praktiskt taget slängt in routerna. Jag såg
+    Kenneths genomgång och han hade en otroligt bra lösning på detta, en funktion i App-klassen. Den ska jag implementera i mitt anax-lite.
+</p>
+
+<p>
+    Därefter så skulle jag vilja städa mina vyer. Mitt mål skulle vara att alla vyerna fungerade lika bra som min admin/content/blog.php gör.
 </p>
 </section>
 
