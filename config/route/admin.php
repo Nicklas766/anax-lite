@@ -24,12 +24,7 @@ $app->router->add("admin", function () use ($app) {
 // -------------------------------------------------------
 
 $app->router->add("admin/fail", function () use ($app) {
-    $app->view->add("session/header", ["title" => "Login"]);
-    $app->view->add("navbar2/navbar");
-    $app->view->add("admin/user/fail");
-    $app->view->add("take1/footer");
-    $app->response->setBody([$app->view, "render"])
-        ->send();
+    $app->renderPage("admin/user/fail", "Fail");
 });
 
 // -------------------------------------------------------
@@ -108,12 +103,7 @@ $app->router->add("admin/add", function () use ($app) {
 
 
 $app->router->add("textfilter", function () use ($app) {
-    $app->view->add("take1/header", ["title" => "createcontent"]);
-    $app->view->add("navbar2/navbar");
-    $app->view->add("textfilter");
-    $app->view->add("take1/footer");
-    $app->response->setBody([$app->view, "render"])
-        ->send();
+    $app->renderPage("textfilter", "createcontent");
 });
 
 $app->router->add("pages", function () use ($app) {
@@ -128,21 +118,11 @@ $app->router->add("pages", function () use ($app) {
 });
 
 $app->router->add("page", function () use ($app) {
-    $app->view->add("take1/header", ["title" => "page"]);
-    $app->view->add("navbar2/navbar");
-    $app->view->add("admin/content/page");
-    $app->view->add("take1/footer");
-    $app->response->setBody([$app->view, "render"])
-        ->send();
+    $app->renderPage("admin/content/page", "page");
 });
 
 $app->router->add("blog/**", function () use ($app) {
-    $app->view->add("take1/header", ["title" => "page"]);
-    $app->view->add("navbar2/navbar");
-    $app->view->add("admin/content/blog");
-    $app->view->add("take1/footer");
-    $app->response->setBody([$app->view, "render"])
-        ->send();
+    $app->renderPage("admin/content/blog", "Blog");
 });
 
 
@@ -185,10 +165,5 @@ $app->router->add("admin/edit", function () use ($app) {
 });
 
 $app->router->add("notfound", function () use ($app) {
-    $app->view->add("take1/header", ["title" => "editcontent"]);
-    $app->view->add("navbar2/navbar");
-    $app->view->add("admin/content/404");
-    $app->view->add("take1/footer");
-    $app->response->setBody([$app->view, "render"])
-        ->send();
+    $app->renderPage("admin/content/404", "notfound");
 });

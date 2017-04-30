@@ -39,6 +39,10 @@ return [
             "text" => "Blog",
             "route" => "blog",
         ],
+        "Webshop" => [
+            "text" => "Webshop",
+            "route" => "webshop",
+        ],
         "login" => [
             "text" => "Login",
             "route" => "login",
@@ -99,6 +103,21 @@ return [
             "route" => "admin/overview",
         ],
 
+      ]
+        ],
+      [
+      "config" => [
+        "navbar-class" => "session-navbar"
+      ],
+      "items" => [
+        "webshop" => [
+            "text" => "webshop",
+            "route" => "webshop",
+        ],
+        "stock" => [
+            "text" => "stock",
+            "route" => "webshop/stock",
+        ],
       ]
       ]
 ];

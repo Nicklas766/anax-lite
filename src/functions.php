@@ -92,3 +92,14 @@ function mergeQueryString($options, $prepend = "?")
     // Build and return the modified querystring as url
     return $prepend . http_build_query($query);
 }
+
+// If a value is empty return true
+function valueController($array)
+{
+    foreach ($array as $val) {
+        if (strlen(strval($val)) <= 0) {
+            return true;
+        }
+    }
+    return false;
+}

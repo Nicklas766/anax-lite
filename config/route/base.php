@@ -16,34 +16,16 @@ $app->router->add("", function () use ($app) {
 });
 
 $app->router->add("about", function () use ($app) {
-    $app->view->add("take1/header", ["title" => "About"]);
-    $app->view->add("navbar2/navbar");
-    $app->view->add("take1/about");
-    $app->view->add("take1/byline");
-    $app->view->add("take1/footer");
-    $app->response->setBody([$app->view, "render"])
-                  ->send();
+    $app->renderPage("take1/about,take1/byline", "about");
 });
 $app->router->add("report", function () use ($app) {
-    $app->view->add("take1/header", ["title" => "Report"]);
-    $app->view->add("navbar2/navbar");
-    $app->view->add("take1/report");
-    $app->view->add("take1/byline");
-    $app->view->add("take1/footer");
-    $app->response->setBody([$app->view, "render"])
-                  ->send();
+    $app->renderPage("take1/report,take1/byline", "Report");
 });
 // -------------------------------------------------------
 // KOM02 SESSION, CALENDAR
 // -------------------------------------------------------
 $app->router->add("session", function () use ($app) {
-    $app->view->add("take1/header", ["title" => "Session"]);
-    $app->view->add("navbar2/navbar");
-    $app->view->add("session");
-    $app->view->add("take1/byline");
-    $app->view->add("take1/footer");
-    $app->response->setBody([$app->view, "render"])
-                  ->send();
+    $app->renderPage("session", "Session");
 });
 
 $app->router->add("calendar", function () use ($app) {

@@ -293,9 +293,50 @@
 <section>
 <h2>Kmom05</h2>
 
+<h2> Gick det bra att komma igång med det vi kallar programmering av databas, med transaktioner, lagrade procedurer, triggers, funktioner? </h2>
+
 <p>
-    ...
+    Början var väldigt, väldigt seg. SQL-kod är givetvis lik PHP, Python, Javascript-kod i grunden kanske, det finns funktioner osv. Men att skriva koden var rätt så svårt då jag personligen inte kodat
+    SQL-kod i denna utsträckning förut. Under momentets gång så släppte det däremot, men i början så kändes uppgiften enorm, men sen när man börjar koda så släppte det. Jag känner att jag har mycket bättre
+    koll på när man bör använda procedures, funktionerna, triggers och transaktionerna. Min kod kanske inte är optimal men det är ju en övning, jag tycker att den blev bra i slutändan dock.
 </p>
+
+
+<h2> Hur är din syn på att programmera på detta viset i databasen? </h2>
+
+<p>
+    Jag gillar det kort sagt. Jag gjorde en bra dokumenation av mitt API tycker jag. Jag försökte göra likt artiklar eller manualer som jag sett under kursens gång. Såg senare att ni ville ha exemplen för varukorg, order och rapporten för beställning,
+    men det la jag längst ner så det finns lättillgängligt. Personligen så gillar jag att man håller backend delarna vid backenden helt enkelt, då det blir mycket lättare att göra en bra och fin frontend, enligt mig.
+</p>
+
+<h2> Några reflektioner kring din kod för backenden till webbshopen? </h2>
+
+<p>
+    Jag använde otroligt många procedures till mitt SQL-API. Syftet är att man ska slippa skriva SQL-kod vid inserts och updates osv via PHP-kod. Man kallar en procedure som sköter resten, ser till så
+    all samhörighet mellan tabellerna blir rätt. Därefter så använde jag några transaktioner för att t.ex se till så att om varorna inte finns på lagret, så blir det en rollback. Även med hjälp av "transaction" så har jag gjort så att man inte kan
+    göra minus på lagret.
+</p>
+
+<p>
+    För triggers så har jag rätt så många som t.ex, createdProduct. Den ser till så att när man skapar en produkt så skapas även en Inventory specifierad för just den produkten. Det går alltså inte att skapa något
+    i lagret, man behöver en produkt för att göra det och det händer automatiskt. Angående detta så finns det även en funktion (removeInventory) som tittar om produkten finns eller inte, om du försöker radera
+    den från Inventory. Min idé var att man kan radera en produkt, därefter kan du radera hyllan. För att lagret kan fortfarande existera med varor även om produkten tagits bort. Så för att lyckas med detta så har jag gjort en
+    "SET FOREIGN_KEY_CHECKS=0;" och sedan "SET FOREIGN_KEY_CHECKS=1;" i min removeProduct procedure. Jag ville alltså att mitt lager ska kunna leva utan min produkt, men ändå kunna ha en samhörighet. Kanske en förvirrande lösning
+    men det blev en bra övning för mig själv.
+</p>
+
+<h2> Något du vill säga om koden generellt i och kring Anax Lite? </h2>
+
+<p>
+    En sak jag skulle vilja tillägga om just SQL-koden. Så gillar jag min lösning när man placerar en order och makulerar den. När man skapar ordern så tas varorna från lagret men om man tar bort ordern så tas den aldrig bort från
+    databasen, den får istället status "canceled". Med hjälp av en procedure som innehåller en while-loop så kan jag se till så varorna läggs tillbaka på lagret.
+</p>
+
+<p>
+    Skulle vara trevligt om rättaren gick igenom min API-dokumentation lite kort kanske om han/hon har tid, annars så finns informationen för kravet längst ner. Men angående just Anax-Lite så skulle jag gärna vilja se att vi får lite mer
+    tid på att skapa fin kod i vyerna. Min kod fungerar som den ska, men jag tycker att jag kan göra den mycket finare med mer tid.
+</p>
+
 </section>
 
 <section>

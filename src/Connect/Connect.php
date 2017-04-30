@@ -44,6 +44,26 @@ class Connect
     }
 
     /**
+     * Do INSERT/UPDATE/DELETE with optional parameters.
+     *
+     * @param string $sql   statement to execute
+     * @param array  $param to match ? in statement
+     *
+     * @return PDOStatement
+     */
+    public function execute($sql, $param = [])
+    {
+        $sth = $this->db->prepare($sql);
+        if (!$sth) {
+            $this->statementException($sth, $sql, $param);
+        }
+        $status = $sth->execute($param);
+        if (!$status) {
+            $this->statementException($sth, $sql, $param);
+        }
+        return $sth;
+    }
+    /**
      * Adds user to the database
      * @param $user string The name of the user
      * @param $pass string The user's password

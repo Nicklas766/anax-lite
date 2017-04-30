@@ -28,6 +28,9 @@ $app->page = new \nicklas\Connect\Page();
 $app->blog = new \nicklas\Connect\Blog();
 $app->block = new \nicklas\Connect\Block();
 
+
+// Get webshop class
+$app->webshop = new \nicklas\Connect\Webshop();
 // Textfilterclass
 $app->textfilter = new \nicklas\Textfilter\Textfilter();
 
@@ -39,6 +42,7 @@ $app->admin->setApp($app);
 $app->content->setApp($app);
 $app->page->setApp($app);
 $app->blog->setApp($app);
+$app->webshop->setApp($app);
 // Update view configuration with values from config file.
 $app->view->configure("view.php");
 $app->navbar->configure("navbar.php");
