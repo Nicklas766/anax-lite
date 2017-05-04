@@ -501,10 +501,10 @@ INSERT INTO `Image` (`link`) VALUES
 
 INSERT INTO `Product` (`description`, `imgLink`, `price`) VALUES
 ("Rockband Merchandise Sleeve", "img/webshop/musicshirt.png", 100),
-("Music Book", "img/webshop/musicbook.jpg", 100),
-("Styling Book", "img/webshop/clothesbook.png", 100),
-("CD book", "img/webshop/cd.png", 100),
-("Rockband Merchandise T-shirt", "img/webshop/tshirt.png", 100);
+("Music Book", "img/webshop/musicbook.jpg", 50),
+("Styling Book", "img/webshop/clothesbook.png", 150),
+("CD book", "img/webshop/cd.png", 30),
+("Rockband Merchandise T-shirt", "img/webshop/tshirt.png", 70);
 
 INSERT INTO `Prod2Cat` (`prod_id`, `cat_id`) VALUES
 (1, 1), (1, 2),
@@ -597,3 +597,8 @@ INNER JOIN Customer AS C ON CO.customer_id = C.id
 INNER JOIN Product AS P ON P.id = O.Product
 GROUP BY CO.id
 ORDER BY P.id;
+
+
+CREATE UNIQUE INDEX name_unique ON users (name);
+CREATE INDEX index_price ON product(price);
+CREATE INDEX index_status ON Cst_Order(status);

@@ -30,6 +30,7 @@ CREATE TABLE `Cst_Order` (
   `delivery` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `customer_id` (`customer_id`),
+  KEY `index_status` (`status`),
   CONSTRAINT `Cst_Order_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `Customer` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -133,7 +134,7 @@ CREATE TABLE `Inventory` (
   KEY `shelf_id` (`shelf_id`),
   CONSTRAINT `Inventory_ibfk_1` FOREIGN KEY (`prod_id`) REFERENCES `Product` (`id`),
   CONSTRAINT `Inventory_ibfk_2` FOREIGN KEY (`shelf_id`) REFERENCES `InvenShelf` (`shelf`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -142,7 +143,7 @@ CREATE TABLE `Inventory` (
 
 LOCK TABLES `Inventory` WRITE;
 /*!40000 ALTER TABLE `Inventory` DISABLE KEYS */;
-INSERT INTO `Inventory` VALUES (1,1,'A101',1000),(2,2,'NONE',0),(3,3,'A101',300),(4,4,'NONE',0),(5,5,'NONE',0);
+INSERT INTO `Inventory` VALUES (1,1,'A101',1000),(2,2,'NONE',0),(3,3,'A101',300),(4,4,'NONE',0),(5,5,'NONE',0),(6,6,'A101',1);
 /*!40000 ALTER TABLE `Inventory` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -180,7 +181,7 @@ CREATE TABLE `LowStock` (
   PRIMARY KEY (`id`),
   KEY `prod_id` (`prod_id`),
   CONSTRAINT `LowStock_ibfk_1` FOREIGN KEY (`prod_id`) REFERENCES `Product` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -189,6 +190,7 @@ CREATE TABLE `LowStock` (
 
 LOCK TABLES `LowStock` WRITE;
 /*!40000 ALTER TABLE `LowStock` DISABLE KEYS */;
+INSERT INTO `LowStock` VALUES (1,6,3,'2017-04-30 10:28:40'),(2,6,0,'2017-04-30 10:28:47'),(3,6,1,'2017-05-01 08:43:27');
 /*!40000 ALTER TABLE `LowStock` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -252,7 +254,7 @@ CREATE TABLE `Prod2Cat` (
   KEY `cat_id` (`cat_id`),
   CONSTRAINT `Prod2Cat_ibfk_1` FOREIGN KEY (`prod_id`) REFERENCES `Product` (`id`),
   CONSTRAINT `Prod2Cat_ibfk_2` FOREIGN KEY (`cat_id`) REFERENCES `ProdCategory` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -261,7 +263,7 @@ CREATE TABLE `Prod2Cat` (
 
 LOCK TABLES `Prod2Cat` WRITE;
 /*!40000 ALTER TABLE `Prod2Cat` DISABLE KEYS */;
-INSERT INTO `Prod2Cat` VALUES (1,1,1),(2,1,2),(3,2,1),(4,2,3),(5,3,2),(6,3,3),(7,4,1),(8,4,3),(9,5,1),(10,5,2);
+INSERT INTO `Prod2Cat` VALUES (3,2,1),(4,2,3),(5,3,2),(6,3,3),(7,4,1),(8,4,3),(9,5,1),(10,5,2),(14,6,1),(15,6,2),(23,1,1);
 /*!40000 ALTER TABLE `Prod2Cat` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -301,8 +303,9 @@ CREATE TABLE `Product` (
   `description` varchar(20) DEFAULT NULL,
   `imgLink` varchar(40) DEFAULT NULL,
   `price` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`),
+  KEY `index_price` (`price`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -311,7 +314,7 @@ CREATE TABLE `Product` (
 
 LOCK TABLES `Product` WRITE;
 /*!40000 ALTER TABLE `Product` DISABLE KEYS */;
-INSERT INTO `Product` VALUES (1,'Rockband Merchandise','img/webshop/musicshirt.png',100),(2,'Music Book','img/webshop/musicbook.jpg',100),(3,'Styling Book','img/webshop/clothesbook.png',100),(4,'CD book','img/webshop/cd.png',100),(5,'Rockband Merchandise','img/webshop/tshirt.png',100);
+INSERT INTO `Product` VALUES (1,'Rockband Merchandise','img/webshop/cd.png',102),(2,'Music Book','img/webshop/musicbook.jpg',100),(3,'Styling Book','img/webshop/clothesbook.png',100),(4,'CD book','img/webshop/cd.png',100),(5,'Rockband Merchandise','img/webshop/tshirt.png',100),(6,'Nicklas t-shirt','img/webshop/musicshirt.png',50);
 /*!40000 ALTER TABLE `Product` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -448,7 +451,7 @@ CREATE TABLE `content` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `path` (`path`),
   UNIQUE KEY `slug` (`slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -457,7 +460,7 @@ CREATE TABLE `content` (
 
 LOCK TABLES `content` WRITE;
 /*!40000 ALTER TABLE `content` DISABLE KEYS */;
-INSERT INTO `content` VALUES (1,'hem',NULL,'Hem','Detta är min hemsida. Den är skriven i [url=http://en.wikipedia.org/wiki/BBCode]bbcode[/url] vilket innebär att man kan formattera texten till [b]bold[/b] och [i]kursiv stil[/i] samt hantera länkar.\n\nDessutom finns ett filter \'nl2br\' som lägger in <br>-element istället för \\n, det är smidigt, man kan skriva texten precis som man tänker sig att den skall visas, med radbrytningar.','page','bbcode,nl2br',NULL,'2017-04-22 07:44:38',NULL,NULL),(2,'om',NULL,'Om','Detta är en sida om mig och min webbplats. Den är skriven i [Markdown](http://en.wikipedia.org/wiki/Markdown). Markdown innebär att du får bra kontroll över innehållet i din sida, du kan formattera och sätta rubriker, men du behöver inte bry dig om HTML.\n\nRubrik nivå 2\n-------------\n\nDu skriver enkla styrtecken för att formattera texten som **fetstil** och *kursiv*. Det finns ett speciellt sätt att länka, skapa tabeller och så vidare.\n\n###Rubrik nivå 3\n\nNär man skriver i markdown så blir det läsbart även som textfil och det är lite av tanken med markdown.','page','markdown',NULL,'2017-04-22 07:44:38',NULL,NULL),(3,'blogpost-1','valkommen-till-min-blogg','Välkommen till min blogg!','Detta är en bloggpost.\n\nNär det finns länkar till andra webbplatser så kommer de länkarna att bli klickbara.\n\nhttp://dbwebb.se är ett exempel på en länk som blir klickbar.','post','link,nl2br',NULL,'2017-04-22 07:44:38',NULL,NULL),(4,'blogpost-2','nu-har-sommaren-kommit','Nu har sommaren kommit','Detta är en bloggpost som berättar att sommaren har kommit, ett budskap som kräver en bloggpost.','post','nl2br',NULL,'2017-04-22 07:44:38',NULL,NULL),(5,'blogpost-3','nu-har-hosten-kommit','Nu har hösten kommit','Detta är en bloggpost som berättar att sommaren har kommit, ett budskap som kräver en bloggpost','post','nl2br',NULL,'2017-04-22 07:44:38',NULL,NULL),(6,NULL,'random','random','','','','0000-00-00 00:00:00','2017-04-22 08:33:13','2017-04-22 11:49:44',NULL),(7,NULL,'nicklas-first-blog','Nicklas first blog','My first post {#id1}\r\n=====================\r\n\r\nHello! Welcome to my first blogpost. I\'m currently using markdown as filter for this text.\r\n\r\nI have however more options such as, \r\n\r\n* bbcode\r\n* link\r\n* nl2br\r\n* markdown','post','markdown','0000-00-00 00:00:00','2017-04-22 08:39:04','2017-04-22 10:42:10',NULL),(8,'nicklaspage','nicklas-first-page','Nicklas first page','Of course I need a new page aswell. For this one I\'ll use filter such as \"bbcode\" and \"nl2br\".\r\n\r\nIm a new line,\r\n\r\nIm another new line.','page','bbcode, nl2br','0000-00-00 00:00:00','2017-04-22 08:43:00','2017-04-22 10:44:23',NULL),(9,'hej','notpublishedyet','notpublishedyet','This will use markdown as default, since i gave no filter.\r\n\r\nHowever, it will not be posted until 2018, since I typed that i wanted the publish date to be in 2018.','page','','2018-02-02 00:00:00','2017-04-22 08:44:47','2017-04-22 10:46:06',NULL),(10,'deletedpage','deletedpage','deletedpage','This page will be published but later deleted','page','','0000-00-00 00:00:00','2017-04-22 08:46:49','2017-04-22 10:47:26','2017-04-22 10:47:41'),(11,'homepage','homepage','Homepage','This type will be displayed as \"block\".\r\n\r\nIt uses however same method as the type \"page\" to display the actual content.','block','markdown','0000-00-00 00:00:00','2017-04-22 08:48:32','2017-04-22 10:49:39',NULL),(12,'didyouknow','did-you-know','Did you know','Did you know that the type is \"block\"? \r\n\r\nTherefore it displays on the first page. \r\n\r\nAwesome!','block','markdown','0000-00-00 00:00:00','2017-04-22 08:50:02','2017-04-22 10:50:40',NULL),(13,'dp','nicklas-deleted-post','Nicklas deleted post','I will delete this','post','markdown','0000-00-00 00:00:00','2017-04-22 09:42:35','2017-04-22 11:43:24','2017-04-22 11:43:47'),(14,'newblock','new-block','new block','[b]Bold text[/b] [i]Italic text[/i] [url=http://dbwebb.se]a link to dbwebb[/url]\r\n\r\nhttp://dbwebb.se\r\n\r\nHello this is a sentence for linebreak.\r\nI just made a line break,\r\nand another one,\r\nand another one','block','bbcode,link,nl2br','0000-00-00 00:00:00','2017-04-22 09:44:33','2017-04-22 11:46:48',NULL),(15,NULL,'new-blocke','empty','','','','0000-00-00 00:00:00','2017-04-22 09:47:24','2017-04-22 11:49:06','2017-04-22 11:49:13'),(16,NULL,'new-post','new post','This is a published post.','post','markdown','0000-00-00 00:00:00','2017-04-22 09:52:27','2017-04-23 17:43:01',NULL),(17,'aaaa','a','aaaaa','#aaaaa','page','markdown','0000-00-00 00:00:00','2017-04-27 03:28:11','2017-04-27 05:28:32','2017-04-27 05:29:00');
+INSERT INTO `content` VALUES (1,'hem',NULL,'Hem','Detta är min hemsida. Den är skriven i [url=http://en.wikipedia.org/wiki/BBCode]bbcode[/url] vilket innebär att man kan formattera texten till [b]bold[/b] och [i]kursiv stil[/i] samt hantera länkar.\n\nDessutom finns ett filter \'nl2br\' som lägger in <br>-element istället för \\n, det är smidigt, man kan skriva texten precis som man tänker sig att den skall visas, med radbrytningar.','page','bbcode,nl2br',NULL,'2017-04-22 07:44:38',NULL,NULL),(2,'om',NULL,'Om','Detta är en sida om mig och min webbplats. Den är skriven i [Markdown](http://en.wikipedia.org/wiki/Markdown). Markdown innebär att du får bra kontroll över innehållet i din sida, du kan formattera och sätta rubriker, men du behöver inte bry dig om HTML.\n\nRubrik nivå 2\n-------------\n\nDu skriver enkla styrtecken för att formattera texten som **fetstil** och *kursiv*. Det finns ett speciellt sätt att länka, skapa tabeller och så vidare.\n\n###Rubrik nivå 3\n\nNär man skriver i markdown så blir det läsbart även som textfil och det är lite av tanken med markdown.','page','markdown',NULL,'2017-04-22 07:44:38',NULL,NULL),(3,'blogpost-1','valkommen-till-min-blogg','Välkommen till min blogg!','Detta är en bloggpost.\n\nNär det finns länkar till andra webbplatser så kommer de länkarna att bli klickbara.\n\nhttp://dbwebb.se är ett exempel på en länk som blir klickbar.','post','link,nl2br',NULL,'2017-04-22 07:44:38',NULL,NULL),(4,'blogpost-2','nu-har-sommaren-kommit','Nu har sommaren kommit','Detta är en bloggpost som berättar att sommaren har kommit, ett budskap som kräver en bloggpost.','post','nl2br',NULL,'2017-04-22 07:44:38',NULL,NULL),(5,'blogpost-3','nu-har-hosten-kommit','Nu har hösten kommit','Detta är en bloggpost som berättar att sommaren har kommit, ett budskap som kräver en bloggpost','post','nl2br',NULL,'2017-04-22 07:44:38',NULL,NULL),(6,NULL,'random','random','','','','0000-00-00 00:00:00','2017-04-22 08:33:13','2017-04-22 11:49:44',NULL),(7,NULL,'nicklas-first-blog','Nicklas first blog','My first post {#id1}\r\n=====================\r\n\r\nHello! Welcome to my first blogpost. I\'m currently using markdown as filter for this text.\r\n\r\nI have however more options such as, \r\n\r\n* bbcode\r\n* link\r\n* nl2br\r\n* markdown','post','markdown','0000-00-00 00:00:00','2017-04-22 08:39:04','2017-04-22 10:42:10',NULL),(8,'nicklaspage','nicklas-first-page','Nicklas first page','Of course I need a new page aswell. For this one I\'ll use filter such as \"bbcode\" and \"nl2br\".\r\n\r\nIm a new line,\r\n\r\nIm another new line.','page','bbcode, nl2br','0000-00-00 00:00:00','2017-04-22 08:43:00','2017-04-22 10:44:23',NULL),(9,'hej','notpublishedyet','notpublishedyet','This will use markdown as default, since i gave no filter.\r\n\r\nHowever, it will not be posted until 2018, since I typed that i wanted the publish date to be in 2018.','page','','2018-02-02 00:00:00','2017-04-22 08:44:47','2017-04-22 10:46:06',NULL),(10,'deletedpage','deletedpage','deletedpage','This page will be published but later deleted','page','','0000-00-00 00:00:00','2017-04-22 08:46:49','2017-04-22 10:47:26','2017-04-22 10:47:41'),(11,'homepage','homepage','Homepage','This type will be displayed as \"block\".\r\n\r\nIt uses however same method as the type \"page\" to display the actual content.','block','markdown','0000-00-00 00:00:00','2017-04-22 08:48:32','2017-04-22 10:49:39',NULL),(12,'didyouknow','did-you-know','Did you know','Did you know that the type is \"block\"? \r\n\r\nTherefore it displays on the first page. \r\n\r\nAwesome!','block','markdown','0000-00-00 00:00:00','2017-04-22 08:50:02','2017-04-22 10:50:40',NULL),(13,'dp','nicklas-deleted-post','Nicklas deleted post','I will delete this','post','markdown','0000-00-00 00:00:00','2017-04-22 09:42:35','2017-04-22 11:43:24','2017-04-22 11:43:47'),(14,'newblock','new-block','new block','[b]Bold text[/b] [i]Italic text[/i] [url=http://dbwebb.se]a link to dbwebb[/url]\r\n\r\nhttp://dbwebb.se\r\n\r\nHello this is a sentence for linebreak.\r\nI just made a line break,\r\nand another one,\r\nand another one','block','bbcode,link,nl2br','0000-00-00 00:00:00','2017-04-22 09:44:33','2017-04-22 11:46:48',NULL),(15,NULL,'new-blocke','empty','','','','0000-00-00 00:00:00','2017-04-22 09:47:24','2017-04-22 11:49:06','2017-04-22 11:49:13'),(16,NULL,'new-post','new post','This is a published post.','post','markdown','0000-00-00 00:00:00','2017-04-22 09:52:27','2017-04-23 17:43:01',NULL),(17,'aaaa','a','aaaaa','#aaaaa','page','markdown','0000-00-00 00:00:00','2017-04-27 03:28:11','2017-04-27 05:28:32','2017-04-27 05:29:00'),(18,'APIexemplen','api-exemplen','API-exemplen','Exemplen\r\n=====================\r\n\r\nAlla följande exemplen antar att du har gjort följande,\r\n\r\n`INSERT INTO `ProdCategory` (`category`) VALUES\r\n(\"music\"), (\"clothes\"), (\"book\");\r\n\r\nINSERT INTO `Image` (`link`) VALUES\r\n(\"img/webshop/cd.png\"), (\"img/webshop/clothesbook.png\"), (\"img/webshop/musicbook.jpg\"),\r\n(\"img/webshop/musicshirt.png\"), (\"img/webshop/tshirt.png\");\r\n\r\nINSERT INTO `Product` (`description`, `imgLink`, `price`) VALUES\r\n(\"Rockband Merchandise Sleeve\", \"img/webshop/musicshirt.png\", 100),\r\n(\"Music Book\", \"img/webshop/musicbook.jpg\", 100),\r\n(\"Styling Book\", \"img/webshop/clothesbook.png\", 100),\r\n(\"CD book\", \"img/webshop/cd.png\", 100),\r\n(\"Rockband Merchandise T-shirt\", \"img/webshop/tshirt.png\", 100);\r\n\r\nINSERT INTO `Prod2Cat` (`prod_id`, `cat_id`) VALUES\r\n(1, 1), (1, 2),\r\n(2, 1), (2, 3),\r\n(3, 2), (3, 3),\r\n(4, 1), (4, 3),\r\n(5, 1), (5, 2);\r\n\r\nINSERT INTO `InvenShelf` (`shelf`, `description`) VALUES\r\n(\"NONE\", \"Currently not in stock\"),\r\n(\"A101\", \"House A, shelf 101\"),\r\n(\"A102\", \"House A, shelf 102\");`\r\n\r\nCALL updateInventory(1, \"A101\", 1000);\r\nCALL updateInventory(3, \"A101\", 300);\r\n\r\n\r\nSkapa en order för en kund (SQL-KOD, idén är att man kan kopiera rakt av)\r\n-------------\r\n\r\nINSERT INTO `Customer` (`firstName`, `lastName`) VALUES\r\n(\"Nicklas\", \"Envall\");\r\n\r\n-- Ska fungera,\r\nCALL addCart(1, 1);\r\nCALL addCart(1, 1);\r\n\r\n-- Ska inte fungera,\r\nCALL addCart(1, 2);\r\n\r\n-- Ska fungera,\r\nCALL addCart(1, 3);\r\nCALL addCart(1, 3);\r\n\r\n-- Kontroll\r\nSELECT * FROM VShoppingCart WHERE Customer_ID = 1;\r\n\r\n-- Ta bort vara 1\r\nCALL removeCart(1, 1);\r\n\r\n-- Kontroll\r\nSELECT * FROM VShoppingCart WHERE Customer_ID = 1;\r\n\r\n-- Skapa order, kontrollera lagret så det tas bort\r\nSELECT * FROM Inventory;\r\nCALL createOrder(1);\r\nSELECT * FROM Inventory;\r\n\r\n-- Titta allt som har med ordrar att göra\r\nSELECT * FROM Cst_Order;\r\nSELECT * FROM OrderRow;\r\n\r\n-- Avbryt ordern, kontrollera så allt tas tillbaka till lagret och status ändras till cancel\r\nSELECT * FROM VCst_Order;\r\nSELECT * FROM Inventory;\r\ncall cancelOrder(1);\r\n\r\nSELECT * FROM VCst_Order;\r\nSELECT * FROM Inventory;\r\n\r\n\r\nRapporten (SQL-KOD, idén är att man kan kopiera rakt av)\r\n-------------\r\n\r\n--En trigger kontrollerar efter varje UPDATE.\r\n\r\nCALL updateInventory(4, \"A101\", 1);\r\nSELECT * FROM LowStock;\r\nCALL updateInventory(4, \"A101\", 4);\r\nSELECT * FROM LowStock;\r\nCALL updateInventory(4, \"A101\", 7);\r\nSELECT * FROM LowStock;\r\nCALL updateInventory(4, \"A101\", 10);\r\nSELECT * FROM LowStock;\r\n','post','nl2br,link','0000-00-00 00:00:00','2017-04-30 10:21:54','2017-04-30 12:23:18',NULL);
 /*!40000 ALTER TABLE `content` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -475,8 +478,9 @@ CREATE TABLE `users` (
   `info` varchar(100) COLLATE utf8_swedish_ci NOT NULL,
   `email` varchar(100) COLLATE utf8_swedish_ci NOT NULL,
   `authority` varchar(100) COLLATE utf8_swedish_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name_unique` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -485,7 +489,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Nicklas766','$2y$10$8Fhmz0Nzo4jmmFXOtTHJYO.S92k8XYcny7udxptF8jF9PcBXxMMSG','Hello, I\'m the creator of the site. Feel free to look around. :)','Nicklas766@live.se','Admin'),(2,'qwerty','$2y$10$FUs3zzV3ji.0mDNwnfUBFudjW8A2QL7amadfRmysTTVmNAOVty.Iy','Hello I\'m admin.','admin@gmail.com','Admin'),(3,'Hello','$2y$10$TsBEqCyFbGaN6Ll2b1xriu.P5VSFxokpHG4zRNMA/wYpWUS2MZS/.','','',''),(4,'Hello2','$2y$10$kmYkhI845DHaR06HnAnbT./GXm4kSdOKIWKIsdUnlFuwRCyvp4aP.','Helloo!','hello@gmail.com',''),(6,'Randomguy','$2y$10$m2qDzy.hDCwZ6bCNJNLyoOPdwM78x4d4s1WXOQAN6q4e8gonRp8d6','','','User'),(7,'random2','$2y$10$EJU2cs06ltVaqP/S8FRtGuZ4rSaUYBxrtjyY4Gi2KwdVVX86WM3EK','random','random@gmail.com','User'),(9,'admin','$2y$10$RxLLMhJgWS4R2QBeewxMGuhUw7WyMRl6vuymLhJmmYBtZOHu9zFgW','I am admin123','admin@gmail.com','Admin'),(13,'Hej','$2y$10$i6yZbgpO8mj.8X4Bcp5kL.aGgZOV9gDjbk5UKEJvrl/XSss9pfvHu','','','User'),(14,'x','$2y$10$SJ5xXVERMkQ5Ogo5UBxzHuDcN6RbywMSWVhxtt5JD/aZ6JgDqTpXS','','','User'),(15,'doe','$2y$10$pa.pzTusHUK81HnUcFJnvOFrE99TFcWLM79YNu6wGd.aBvzfVMPVe','','','User');
+INSERT INTO `users` VALUES (1,'Nicklas766','$2y$10$8Fhmz0Nzo4jmmFXOtTHJYO.S92k8XYcny7udxptF8jF9PcBXxMMSG','Hello, I\'m the creator of the site. Feel free to look around. :)','Nicklas766@live.se','Admin'),(2,'qwerty','$2y$10$FUs3zzV3ji.0mDNwnfUBFudjW8A2QL7amadfRmysTTVmNAOVty.Iy','Hello I\'m admin.','admin@gmail.com','Admin'),(3,'Hello','$2y$10$TsBEqCyFbGaN6Ll2b1xriu.P5VSFxokpHG4zRNMA/wYpWUS2MZS/.','','',''),(4,'Hello2','$2y$10$kmYkhI845DHaR06HnAnbT./GXm4kSdOKIWKIsdUnlFuwRCyvp4aP.','Helloo!','hello@gmail.com',''),(6,'Randomguy','$2y$10$m2qDzy.hDCwZ6bCNJNLyoOPdwM78x4d4s1WXOQAN6q4e8gonRp8d6','','','User'),(7,'random2','$2y$10$EJU2cs06ltVaqP/S8FRtGuZ4rSaUYBxrtjyY4Gi2KwdVVX86WM3EK','random','random@gmail.com','User'),(9,'admin','$2y$10$RxLLMhJgWS4R2QBeewxMGuhUw7WyMRl6vuymLhJmmYBtZOHu9zFgW','I am admin123','admin@gmail.com','Admin'),(13,'Hej','$2y$10$i6yZbgpO8mj.8X4Bcp5kL.aGgZOV9gDjbk5UKEJvrl/XSss9pfvHu','','','User'),(14,'x','$2y$10$SJ5xXVERMkQ5Ogo5UBxzHuDcN6RbywMSWVhxtt5JD/aZ6JgDqTpXS','','','User'),(15,'doe','$2y$10$pa.pzTusHUK81HnUcFJnvOFrE99TFcWLM79YNu6wGd.aBvzfVMPVe','','','User'),(16,'','$2y$10$ZI97kpSWbHkHMONoS7dn8OfIde8WxW4cfp/9DXtA2XDGu8NEKnOgG','','','');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -963,4 +967,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-30 11:10:52
+-- Dump completed on 2017-05-04  9:54:16

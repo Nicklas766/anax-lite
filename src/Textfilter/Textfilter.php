@@ -43,7 +43,7 @@ class Textfilter
         // For each filter, call its function with the $text as parameter.
         foreach ($filter as $key) {
             if (!isset($callbacks[$key])) {
-                throw new Exception("The filter '$filters' is not a valid filter string due to '$key'.");
+                throw new TextException("The filter '$filters' is not a valid filter string due to '$key'.");
             }
             $text = call_user_func_array([$this, $callbacks[$key]], [$text]);
         }

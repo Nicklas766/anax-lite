@@ -16,6 +16,8 @@ Detta är en introduktion till min databas, "nien16". I databasen har jag just n
 * Cst_Order
 * Order_row
 
+Den använder bland annat indexes för att se till så hantering och vissa SELECT-satser går snabbare.
+
 Users handlar om precis vad namnet antyder, den innehåller information om användare och admins.
 
 Content innehåller texter, med information om hur de ska visas på sidan. Bra för att undvika flera

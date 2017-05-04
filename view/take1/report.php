@@ -342,9 +342,66 @@
 <section>
 <h2>Kmom06</h2>
 
+<h2> Vad du bekant med begreppet index i databaser sedan tidigare? </h2>
+
 <p>
-    ...
+    Nej jag var inte bekant med index i databaser förut. Däremot så har jag använt primär nyckel men aldrig riktigt tänkt på
+    varför, förutom att det ska visa att den är "huvudnyckeln". Efter detta moment så har jag lärt mig mycket om hur jag
+    bör tänka när jag skapar en MySQL databas, men även när jag optimerar en befintlig databas. I en liten databas så spelar
+    det kanske ingen roll, men för att bli en bra programmerare så behöver man ju veta och vara beredd på en större databas.
 </p>
+
+<h2> Berätta om hur du jobbade i uppgiften om index och vilka du valde att lägga till och skillnaden före/efter.</h2>
+
+<p>
+    Jag hade redan många primära nycklar i min databas. Så man fick tänka till lite, vart kan det behövas ett index? Jag redovisar nedan varför och hur det gick. De tabellerna som jag valde blev, "users", "product" och "Cst_Order".
+    I kmom06 la jag mina testfiler, jag har även integrerat allt i min egna databas, som ska synas på i "me/anax-lite/sql".
+</p>
+
+<p>
+    Jag ville börja med min users tabell för att om man har en hemsida där man kan skapa användare, så vill man ha många som registrerar sig. Därav så är det bra att skapa index till users tabellen, då målet är ett hav av användare.
+    Men då behöver man vara beredd från början som artikeln skrev. Genom ge "name" i users tabellen ett index "name_unique" som är en UNIQUE nyckel (UNI) så fick jag en rad istället för en full table scan (12 rader i detta fall) med en EXPLAIN och SELECT-sats.
+    Varför är det bra? Tolv (12) rader är ju inte så mycket. Jo för att som jag tidigare skrev så är det bra för att om jag exempelvis skulle haft 10 tusen användaren, ska min databas titta på 10 tusen rader? Eller ska den titta på en rad?
+    Det säger sig själv, en rad är givetvis mycket bättre.
+</p>
+
+<p>
+    Sedan till min andra så valde jag att ge "price" från tabellen "product" ett index som fick namnet "index_price". Varför? Jo för att i framtiden kanske jag kommer ha många produkter och vill separera produkter beroende på belopp.
+    Hursomhelst så fick jag börja med att ändra mina produkters priser så att jag kan testa min teori. Därefter med "EXPLAIN SELECT * FROM product WHERE price > 100;" så kunde jag se att utan index så blev det 5 rows och med så blev det 1.
+</p>
+
+<p>
+    Därefter till mitt tredje val så valde jag att ge ett index till "Cst_Order" tabellen, som innehåller "status". Hantering av ordrar ska gå snabbt då varje sekund är viktig för att det handlar om pengar. Mn idé var att de som arbetar på
+    lagret kanske vill sortera in ordrarna via status för att se vad som behövs göras. Eller en kundsida där den kan se statusen på sina ordrar. Hursomhelst så provade jag allt med "EXPLAIN", jag skapade några ordrar och
+    den gick från att titta igenom ett flertal rader till endast en.
+</p>
+
+<p>
+    Sammanfattningsvis så kunde jag markant ta ner antalet rader som behövdes tittas igenom, med hjälp av index. Det går troligtvis inte snabbare just nu, då jag inte har så många rader. Men i framtiden, så är jag beredd.
+</p>
+
+<h2> Har du tidigare erfarenheter av att skriva kod som testar annan kod? </h2>
+
+<p>
+    Ja, jag gick nyligen klart oopython-kursen. Där fick vi lära oss om tester av kod, vi fick även skapa egna tester. Så det känns inte främmande, man skapar några frågeställningar och kör skriptet därefter så får man ett svar
+    tillbaka.
+</p>
+
+<h2> Hur ser du på begreppet enhetstestning och att skriva testbar kod? </h2>
+
+<p>
+    Jag märkte att jag hade lite problem med att hitta en klass som var lätt att skapa ett enhetstest till. Det kanske tecken är att mina funktioner/klasser bör vara enklare (renare) gjorda?
+    Definitivt något att hålla i baktanken, att detta ska man kunna göra test enhetstests på, kanske kan vara ett bra sätt att tänka när man väl kodar. Så det jag menar med detta är att det är ett bra sätt
+    att hålla ordning på koden, det blir enklare för någon annan att lära/förstå koden.
+</p>
+
+<h2> Hur gick det att hitta testbar kod bland dina klasser i Anax Lite? </h2>
+
+<p>
+    Som jag gick in på lite i förra frågan, så tyckte jag att det var svårt att hitta en klass. Mina andra klasser hade många externa beroenden så jag följde uppgiftens råd och ansåg att Textfilter skulle vara en bra
+    klass att öva på. Så jag såg till att göra så kodtäckningen blev 100% på Guess, därefter gjorde jag samma med Textfilter. Jag skapade även grunden till ett enhetstest för min "Session-klass".
+</p>
+
 </section>
 
 <section>

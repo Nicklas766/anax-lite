@@ -49,7 +49,7 @@ return [
         ],
     ]
     ],
-[
+    [
     "config" => [
         "navbar-class" => "session-navbar"
     ],
@@ -75,7 +75,7 @@ return [
             "route" => "session/destroy",
         ],
     ]
-],
+    ],
       [
       "config" => [
         "navbar-class" => "admin-navbar"
